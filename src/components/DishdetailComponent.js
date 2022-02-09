@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-
-
 class DishDetail extends Component {
 
     renderDish(dish) {
@@ -22,16 +20,46 @@ class DishDetail extends Component {
             );
     }
 
+    renderComments(comments) {
+
+        const allComments = comments.map((eachComment) => {
+            return (    
+
+                <ul className="list-unstyled">
+
+                    <p>{eachComment.comment}</p>
+                    <p>-- {eachComment.author} , {eachComment.date}</p>
+
+                </ul>
+
+            );
+        });
+
+        if (comments != null)
+            return (
+
+                <div className="col-12 col-md-5 m-1">  
+                    <h4>Comments</h4>
+                    {allComments}
+                </div>
+
+            );
+        else
+            return (
+                <div></div>
+            );
+    }
+
     render() {
 
         return (
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
+                    {this.renderDish(this.props.selectedDish)}
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    
-                </div>
+                
+                {this.renderComments(this.props.selectedDish.comments)}
+                
             </div>
         );
 
