@@ -27,18 +27,18 @@ class DishDetail extends Component {
 
                 <ul className="list-unstyled">
 
-                    <p>{eachComment.comment}</p>
-                    <p>-- {eachComment.author} , {eachComment.date}</p>
+                    <li>{eachComment.comment}</li>
+                    <li>-- {eachComment.author} , {eachComment.date}</li>
 
                 </ul>
 
             );
-        });
+        }); 
 
         if (comments != null)
             return (
 
-                <div className="col-12 col-md-5 m-1">  
+                <div>  
                     <h4>Comments</h4>
                     {allComments}
                 </div>
@@ -48,6 +48,17 @@ class DishDetail extends Component {
             return (
                 <div></div>
             );
+
+        
+    }
+
+    checkComments(selectedDish) {
+
+        if(selectedDish != null)
+            return ( this.renderComments(selectedDish.comments) );
+        else
+            return ( <div></div> );
+
     }
 
     render() {
@@ -57,8 +68,10 @@ class DishDetail extends Component {
                 <div className="col-12 col-md-5 m-1">
                     {this.renderDish(this.props.selectedDish)}
                 </div>
-                
-                {this.renderComments(this.props.selectedDish.comments)}
+
+                <div className="col-12 col-md-5 m-1">
+                    {this.checkComments(this.props.selectedDish)}
+                </div>
                 
             </div>
         );
